@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-from myshop.shop.models import Product
+import sys
+sys.path.append('..')  # setting parent path
+from ..shop.models import Product
+# from myshop.shop.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
 # Create your views here.

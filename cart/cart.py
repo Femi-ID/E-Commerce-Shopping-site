@@ -2,11 +2,14 @@ from decimal import Decimal
 from django.conf import settings
 # from myshop.shop.models import Product
 
-import sys, os
-current = os.path.dirname(os.path.realpath(__file__))
-parent = os.path.dirname(current)
-sys.path.append(parent)
-import models
+# import sys, os
+# current = os.path.dirname(os.path.realpath(__file__))
+# parent = os.path.dirname(current)
+# sys.path.append(parent)
+# import models
+import sys
+sys.path.append('../myshop')  # setting parent path
+from myshop.shop.models import Product
 
 
 class Cart(object):
@@ -59,7 +62,7 @@ class Cart(object):
         """
         product_ids = self.cart.keys()
         # get the product objects and add them to the cart
-        products = models.Product.objects.filter(id__in=product_ids)
+        products = Product.objects.filter(id__in=product_ids)
 
         # You copy the current cart in the cart variable and add the Product instances to it.
         cart = self.cart.copy()
