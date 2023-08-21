@@ -8,8 +8,8 @@ from django.conf import settings
 # sys.path.append(parent)
 # import models
 import sys
-sys.path.append('../myshop')  # setting parent path
-from myshop.shop.models import Product
+sys.path.append("C:/Users/user/PycharmProjects/E-commerce_Online_Shop/myshop/shop")  # setting parent path
+from shop.models import Product
 
 
 class Cart(object):
@@ -37,6 +37,7 @@ class Cart(object):
         if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 0, 'price': str(product.price)}
 
+        # To update the quantity
         if override_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:
@@ -82,8 +83,7 @@ class Cart(object):
         return sum(item['quantity'] for item in self.cart.values())
 
     def get_total_price(self):
-        return sum(Decimal(item['price']) * item['quantity']
-                   for item in self.cart.values())
+        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 
     def clear(self):
         # remove cart from session

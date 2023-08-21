@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    {% extends 'shop.base.html' %}
+    {% extends 'shop/base.html' %}
     {% load static %}
 
     {% block title %}
@@ -13,7 +13,7 @@
 
     {% block content %}
         <h1>Your shopping cart.</h1>
-        <table class="cart">
+        <table>
             <thead>
                 <tr>
                     <th>Image</th>
@@ -26,24 +26,32 @@
             </thead>
 
             <tbody>
-                {% for items in cart %}
+                {% for item in cart %}
                     {% with product=item.product %}
                         <tr>
                             <td>
                                 <a href="{{ product.get_absolute_url }}">
                                     <img src="{% if product.image %} {{ product.image.url }}
-                                    {% else %} {% static 'img/no_image.png' %} {% endif %}">
+                                    {% else %} {% static 'img/no_image.png' %} {% endif %}"
+                                    width="150" height="80">
                                 </a>
                             </td>
                             <td>{{ product.name }}</td>
-                            <td>{{ item.quantity }}</td>
+                            <td>
+                                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                    {{ item.update_quantity_form.quantity }}
+                                    {{ item.update_quantity_form.override }}
+                                    <input type="submit" value="Update">
+                                    {% csrf_token %}
+                                </form>
+                            </td>
                             <td>
                                 <form action="{% url 'cart:cart_remove' product.id %}" method="post">
                                     <input type="submit" value="Remove">
                                     {% csrf_token %}
                                 </form>
                             </td>
-                            <td class="num">${{ item.price}}</td>
+                            <td class="num">${{ item.price }}</td>
                             <td class="num">${{ item.total_price }}</td>
                         </tr>
                     {% endwith %}
@@ -61,6 +69,7 @@
             <a href="{% url 'shop:product_list' %}" class="button light">
                 Continue Shopping
             </a>
+            <br>
             <a href="#" class="button">Checkout</a>
         </p>
     {% endblock %}
