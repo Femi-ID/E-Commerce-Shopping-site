@@ -14,12 +14,11 @@ def order_create(request):
         form = OrderCreateForm(request.POST)
 
         if form.is_valid():
-            cd = form.cleaned_data
             # create a new order in the database
-            order = cd.save()
+            order = form.save()
             for item in cart:
-                OrderItem.objects.create(product=item['product'], price=item['price'],
-                                         quantity=item['quantity'])
+                OrderItem.objects.create(order=order, product=item['product'],
+                                         price=item['price'], quantity=item['quantity'])
 
             # clear the cart
             cart.clear()
