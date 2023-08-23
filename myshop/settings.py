@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,23 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')  # the local path where these file
 
 CART_SESSION_ID = 'cart'
 # This is the key that you are going to use to store the cart in the user session.
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# Braintree settings
+# TODO: Replace the BRAINTREE_MERCHANT_ID,... values with the ones for your account.
+BRAINTREE_MERCHANT_ID = '6nvmqgr9hybrrpjd'  # Merchant ID
+BRAINTREE_PUBLIC_KEY = '65ysbqjmdn9vwjcz'  # Public Key
+BRAINTREE_PRIVATE_KEY = 'e234593a4b10218d90e9c90b01476e04'  # Private Key
+
+import braintree
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
+
+# You use Environment.Sandbox for integrating the sandbox.
+# Once you go live and create a real account, you will need to change this to Environment.Production.
