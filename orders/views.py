@@ -6,6 +6,10 @@ from .tasks import order_created
 from django.urls import reverse
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Order
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+import weasyprint
 
 # Create your views here.
 
@@ -42,3 +46,19 @@ def order_create(request):
 def admin_order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     return render(request, 'admin/orders/order/detail.html', {'order': order})
+
+
+@staff_member_required
+def admin_order_pdf(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    html = render_to_string('order/order/pdf.html', {'order': order})
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'filename=order_{order.id}.pdf'
+    # use WeasyPrint to generate a PDF file from the rendered HTML code and write the file to the HttpResponse object
+    weasyprint.HTML(string=html).write_pdf(response, stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css')])
+    # Then use the static file css/pdf.css to add CSS styles to the generated PDF file.
+    return response
+
+# 'response': generates a new HttpResponse object specifying the application/pdf content type and
+# including the Content-Disposition header to specify the filename.
+
