@@ -1,5 +1,8 @@
 from django.db import models
 from shop.models import Product
+from decimal import Decimal
+from django.core.validators import MinValueValidator, MaxValueValidator
+from coupons.models import Coupon
 
 """When a shopping cart is checked out, you need to save an order into the database.
 Orders will contain information about customers and the products they are buying."""
@@ -17,6 +20,11 @@ class Order(models.Model):
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
     braintree_id = models.CharField(max_length=150, blank=True)
+    coupon = models.ForeignKey(Coupon, related_name='orders', null=True,
+                               blank=True, on_delete=models.SET_NULL)
+    discount = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    # set on_delete to models.SET_NULL so that if the coupon gets deleted,
+    # the coupon field is set to Null, but the discount is preserved.
 
     class Meta:
         ordering = ('-created',)
@@ -25,7 +33,10 @@ class Order(models.Model):
         return f'Order: {self.id}'
 
     def get_total_cost(self):
-        return sum(item.get_cost() for item in self.items.all())
+        total_cost = sum(item.get_cost() for item in self.items.all())
+        return total_cost - total_cost * (self.discount/Decimal(100))
+        # This method will now take into account the discount applied, if there is one.
+        # return sum(item.get_cost() for item in self.items.all())
 
 
 class OrderItem(models.Model):

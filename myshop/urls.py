@@ -26,6 +26,7 @@ urlpatterns = [
     # Included cart URL before the shop.urls pattern, since it's more restrictive it.
     path('orders/', include('orders.urls', namespace='orders')),
     path('payment/', include('payment.urls', namespace='payment')),
+    path('coupons/', include('coupons.urls', namespace='coupons')),
     path('', include('shop.urls', namespace='shop')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT, view=cache_control(no_cache=True, must_revalidate=True)(serve))

@@ -23,7 +23,11 @@ def order_create(request):
 
         if form.is_valid():
             # create a new order in the database
-            order = form.save()
+            order = form.save(commit=False)
+            if cart.coupon:
+                order.coupon = cart.coupon
+                order.discount = cart.coupon.discount
+            order.save()
             for item in cart:
                 OrderItem.objects.create(order=order, product=item['product'],
                                          price=item['price'], quantity=item['quantity'])
@@ -40,6 +44,7 @@ def order_create(request):
     else:
         form = OrderCreateForm()
         return render(request, 'orders/order/create.html', {'cart': cart, 'form': form})
+# TODO: modify the administration order detail template and the order PDF invoice to display the applied coupon in the same way you did for the cart
 
 
 @staff_member_required
