@@ -3,6 +3,7 @@ from shop.models import Product
 from decimal import Decimal
 from django.core.validators import MinValueValidator, MaxValueValidator
 from coupons.models import Coupon
+from django.utils.translation import gettext_lazy as _
 
 """When a shopping cart is checked out, you need to save an order into the database.
 Orders will contain information about customers and the products they are buying."""
@@ -10,12 +11,12 @@ Orders will contain information about customers and the products they are buying
 
 
 class Order(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.EmailField()
-    address = models.CharField(max_length=250)
-    postal_code = models.CharField(max_length=20)
-    city = models.CharField(max_length=100)
+    first_name = models.CharField(_('first name'), max_length=50)
+    last_name = models.CharField(_('last name'), max_length=50)
+    email = models.EmailField(_('e-mail'))
+    address = models.CharField(_('address'), max_length=250)
+    postal_code = models.CharField(_('postal code'), max_length=20)
+    city = models.CharField(_('city'), max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
@@ -25,6 +26,9 @@ class Order(models.Model):
     discount = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
     # set on_delete to models.SET_NULL so that if the coupon gets deleted,
     # the coupon field is set to Null, but the discount is preserved.
+
+    # You have added names for the fields that are displayed when a user is placing a new order.
+    # Remember that you can also use the verbose_name attribute to name the fields.
 
     class Meta:
         ordering = ('-created',)

@@ -5,6 +5,7 @@
 </head>
 <body>
     {% extends "shop/base.html" %}
+    {% load i18n %}
     {% load static %}
 
     {% block title %}
@@ -27,7 +28,7 @@
             <form action="{% url 'cart:cart_add' product.id %}" method="post">
                 {{ cart_product_form }}
                 {% csrf_token %}
-                <input type="submit" value="Add to Cart">
+                <input type="submit" value='{% trans "Add to Cart" %}'>
             </form>
             {{ product.description|linebreaks }}
         </div>
