@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'coupons.apps.CouponsConfig',
     'rosetta',
+    'parler',
 ]
 
 MIDDLEWARE = [
@@ -143,8 +144,9 @@ LOCALE_PATHS = (
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATICFILES_DIRS = [
+    BASE_DIR / "shop/static/css/",
     BASE_DIR / "static/css/",
-    "static/admin",
+    BASE_DIR / "static/admin",
 ]
 
 import mimetypes
@@ -183,3 +185,17 @@ BRAINTREE_CONF = braintree.Configuration(
 # celery -A myshop worker --pool=solo -l info
 # rabbitmq-server
 # celery -A myshop flower
+
+PARLER_LANGUAGES = {
+    # defines the available languages, en and es, for django-parler.
+    None: (
+        {'code': 'en'},
+        {'code': 'es'},
+    ),
+    # specify default language en and indicate that it shouldn't hide untranslated content
+    'default': {
+        'fallback': 'en',
+        'hide_untranslated': False,
+    }
+}
+
