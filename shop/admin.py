@@ -25,6 +25,7 @@ class ProductAdmin(TranslatableAdmin):
 """django-parler integrates smoothly with the Django administration site. 
 It includes a TranslatableAdmin class that overrides the ModelAdmin class provided by Django to manage model translations.
 It doesn't support the prepopulated_fields attribute, but supports the get_prepopulated_ fields() method that provides the same functionality
+find the full documentation at https://django-parler.readthedocs.io/en/latest/.
 """
 
 # command to create a new migration for the model translations:

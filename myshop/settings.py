@@ -45,8 +45,9 @@ INSTALLED_APPS = [
     'coupons.apps.CouponsConfig',
     'rosetta',
     'parler',
+    'localflavor',
 ]
-
+# These are the settings required and following
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -198,4 +199,9 @@ PARLER_LANGUAGES = {
         'hide_untranslated': False,
     }
 }
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 1
+# These are the settings required to establish a connection with the Redis server.
 

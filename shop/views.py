@@ -12,7 +12,9 @@ def product_list(request, category_slug=None):
     products = Product.objects.filter(available=True)
 
     if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
+        language = request.LANGUAGE_CODE
+        category = get_object_or_404(Category, translations__language_code=language,
+                                     translations__slug=category_slug)
         # to get the requested category through slug
         products = products.filter(category=category)
         # To display lists of products under a particular category
@@ -23,7 +25,9 @@ def product_list(request, category_slug=None):
 
 
 def product_detail(request, id, slug):
-    product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    language = request.LANGUAGE_CODE
+    product = get_object_or_404(Product, id=id, translations__language_code=language,
+                                translations__slug=slug, available=True)
     # You could've retrieved a product instance with only ID,
     # but you include slug in the URL to build SEO-friendly URLs for products.
 
