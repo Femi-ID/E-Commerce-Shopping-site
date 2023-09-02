@@ -36,6 +36,7 @@ class Recommender(object):
             # multiple products, combine scores of all products
             # store the resulting sorted set in a temporary key
             keys = [self.get_product_key(id) for id in product_ids]
+            # # combine and sum all scores for the items contained in the sorted set of each of the given products.
             r.zunionstore(tmp_key, keys)
 
             # remove ids for the products the recommendation is for
@@ -53,3 +54,9 @@ class Recommender(object):
         suggested_products.sort(key=lambda x: suggested_products_ids.index(x.id))
         return suggested_products
 
+    def clear_purchases(self):
+        for id in Product.objects.values_list('id', flat=True):
+            r.delete(self.get_product_key(id))
+
+
+# all Redis data types at https://redis.io/topics/data-types.
