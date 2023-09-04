@@ -12,7 +12,7 @@ class Recommender(object):
     def get_product_key(self, id):
         return f'product:{id}:purchased_with'
 
-    def product_bought(self, products):
+    def products_bought(self, products):
         product_ids = [p.id for p in products]  # get the product IDs for the given Product objects
         for product_id in product_ids:  # iterate over the product IDs.
             for with_id in product_ids:
@@ -36,7 +36,7 @@ class Recommender(object):
             # multiple products, combine scores of all products
             # store the resulting sorted set in a temporary key
             keys = [self.get_product_key(id) for id in product_ids]
-            # # combine and sum all scores for the items contained in the sorted set of each of the given products.
+            # # combine and sum all scores for the items contained in the sorted set of 'each' of the given products.
             r.zunionstore(tmp_key, keys)
 
             # remove id of the product the recommendation is for
@@ -60,6 +60,8 @@ class Recommender(object):
 
 
 # all Redis data types at https://redis.io/topics/data-types.
-# Redis commands
-# https://redis.io/commands
-
+# Redis commands: https://redis.io/commands
+# To run sudo server in the background.
+# sudo service redis-server start
+# sudo service redis-server stop
+# sudo service redis-server restart
