@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-31 02:21+0100\n"
+"POT-Creation-Date: 2023-09-05 00:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,19 +62,23 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: .\cart\templates\cart\detail.html:96
+#: .\cart\templates\cart\detail.html:98
+msgid "People who bought this also bought"
+msgstr ""
+
+#: .\cart\templates\cart\detail.html:112
 msgid "Apply a coupon"
 msgstr ""
 
-#: .\cart\templates\cart\detail.html:99
+#: .\cart\templates\cart\detail.html:115
 msgid "Apply"
 msgstr ""
 
-#: .\cart\templates\cart\detail.html:104
+#: .\cart\templates\cart\detail.html:120
 msgid "Continue Shopping"
 msgstr ""
 
-#: .\cart\templates\cart\detail.html:106
+#: .\cart\templates\cart\detail.html:122
 msgid "Checkout"
 msgstr ""
 
@@ -82,11 +86,11 @@ msgstr ""
 msgid "Coupon"
 msgstr ""
 
-#: .\myshop\settings.py:130
+#: .\myshop\settings.py:132
 msgid "English"
 msgstr ""
 
-#: .\myshop\settings.py:131
+#: .\myshop\settings.py:133
 msgid "Spanish"
 msgstr ""
 
@@ -130,11 +134,15 @@ msgstr ""
 msgid "My shop"
 msgstr ""
 
-#: .\shop\templates\shop\base.html:19
+#: .\shop\templates\shop\base.html:18
+msgid "Language"
+msgstr ""
+
+#: .\shop\templates\shop\base.html:36
 msgid "Your cart"
 msgstr ""
 
-#: .\shop\templates\shop\base.html:21
+#: .\shop\templates\shop\base.html:38
 #, python-format
 msgid ""
 "\n"
@@ -147,12 +155,16 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\shop\templates\shop\base.html:30
+#: .\shop\templates\shop\base.html:47
 msgid "Your cart is empty."
 msgstr ""
 
 #: .\shop\templates\shop\product\detail.html:31
 msgid "Add to Cart"
+msgstr ""
+
+#: .\shop\templates\shop\product\detail.html:37
+msgid "People who bought this also bought:"
 msgstr ""
 
 #: .\shop\templates\shop\product\list.html:18

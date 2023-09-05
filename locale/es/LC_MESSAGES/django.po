@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-31 02:21+0100\n"
-"PO-Revision-Date: 2023-08-31 02:37+0000\n"
+"POT-Creation-Date: 2023-09-05 00:30+0100\n"
+"PO-Revision-Date: 2023-09-05 11:45+0000\n"
 "Last-Translator:   <femii@mail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -63,19 +63,23 @@ msgstr "Total parcial"
 msgid "Total"
 msgstr "Total"
 
-#: .\cart\templates\cart\detail.html:96
+#: .\cart\templates\cart\detail.html:98
+msgid "People who bought this also bought"
+msgstr "Las personas que compraron esto tambien compraron"
+
+#: .\cart\templates\cart\detail.html:112
 msgid "Apply a coupon"
 msgstr "Aplicar un cupón"
 
-#: .\cart\templates\cart\detail.html:99
+#: .\cart\templates\cart\detail.html:115
 msgid "Apply"
 msgstr "Aplicar"
 
-#: .\cart\templates\cart\detail.html:104
+#: .\cart\templates\cart\detail.html:120
 msgid "Continue Shopping"
 msgstr "Continuar comprando"
 
-#: .\cart\templates\cart\detail.html:106
+#: .\cart\templates\cart\detail.html:122
 msgid "Checkout"
 msgstr "Comprar"
 
@@ -83,11 +87,11 @@ msgstr "Comprar"
 msgid "Coupon"
 msgstr "Cupón"
 
-#: .\myshop\settings.py:130
+#: .\myshop\settings.py:132
 msgid "English"
 msgstr "Inglés"
 
-#: .\myshop\settings.py:131
+#: .\myshop\settings.py:133
 msgid "Spanish"
 msgstr "Español"
 
@@ -108,7 +112,6 @@ msgid "payment/"
 msgstr "pago/"
 
 #: .\myshop\urls.py:31
-#| msgid "Coupon"
 msgid "coupons/"
 msgstr "cupones/"
 
@@ -132,11 +135,15 @@ msgstr "Mi tienda"
 msgid "My shop"
 msgstr "Mi tienda"
 
-#: .\shop\templates\shop\base.html:19
+#: .\shop\templates\shop\base.html:18
+msgid "Language"
+msgstr "Idioma"
+
+#: .\shop\templates\shop\base.html:36
 msgid "Your cart"
 msgstr "Tu carro"
 
-#: .\shop\templates\shop\base.html:21
+#: .\shop\templates\shop\base.html:38
 #, python-format
 msgid ""
 "\n"
@@ -153,13 +160,17 @@ msgstr[1] ""
 "\n"
 "%(items)s productos, $%(total)s"
 
-#: .\shop\templates\shop\base.html:30
+#: .\shop\templates\shop\base.html:47
 msgid "Your cart is empty."
 msgstr "Tu carro está vacío."
 
 #: .\shop\templates\shop\product\detail.html:31
 msgid "Add to Cart"
 msgstr "Añadir al carro"
+
+#: .\shop\templates\shop\product\detail.html:37
+msgid "People who bought this also bought:"
+msgstr "Las personas que compraron esto tambien compraron"
 
 #: .\shop\templates\shop\product\list.html:18
 msgid "Categories"

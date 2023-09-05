@@ -13,8 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -92,7 +92,8 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -145,9 +146,12 @@ LOCALE_PATHS = (
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATICFILES_DIRS = [
-    BASE_DIR / "shop/static/css/",
-    BASE_DIR / "static/css/",
-    BASE_DIR / "static/admin",
+    os.path.join(BASE_DIR, "static/css/"),
+    os.path.join(BASE_DIR, "shop/static/css/"),
+    os.path.join(BASE_DIR, "static/admin")
+    # BASE_DIR / "shop/static/css/",
+    # BASE_DIR / "static/css/",
+    # BASE_DIR / "static/admin",
 ]
 
 import mimetypes
@@ -205,3 +209,4 @@ REDIS_PORT = 6379
 REDIS_DB = 1
 # These are the settings required to establish a connection with the Redis server.
 
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
