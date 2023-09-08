@@ -151,7 +151,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static/admin")
     # BASE_DIR / "shop/static/css/",
     # BASE_DIR / "static/css/",
-    # BASE_DIR / "static/admin",
 ]
 
 import mimetypes
