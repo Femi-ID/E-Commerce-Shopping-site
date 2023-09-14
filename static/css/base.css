@@ -1,6 +1,7 @@
-@import url(//fonts.googleapis.com/css?family=Ubuntu);
+@import url('http://fonts.googleapis.com/css?family=Ubuntu');
 
 body {
+    background-color: pink
     margin:0;
     padding:0;
     font-family:helvetica, sans-serif;
